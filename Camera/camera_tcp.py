@@ -6,6 +6,9 @@ import time
 def camera_tcp_process(pipe):
     p_output, p_input = pipe
 
+    # print(p_output.fileno())
+    # print(p_input.fileno())
+
     # TODO: Create a config file for these values
     TCP_IP="172.16.10.1"
     TCP_PORT=8888 

@@ -7,8 +7,16 @@ from .convert_YUV import YUV_to_RGB, YUV_to_gray
 
 class Camera():
     def __init__(self, pipe):
-        self.pipe = pipe
-        pipeline, self.sink = create_gstreamer_pipe(self.pipe)
+        # self.pipe = pipe
+
+        # p_output, p_input = pipe
+
+        # print(p_output.fileno())
+        # print(p_input.fileno())
+
+        self.reader = pipe
+
+        pipeline, self.sink = create_gstreamer_pipe(self.reader)
         ret = pipeline.set_state(Gst.State.PLAYING)  # TODO: print this value to the LOG file
         
         red_buffer = self.__get_buffer()

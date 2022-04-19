@@ -1,14 +1,19 @@
+import os
 import gi
+
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst, GObject
 Gst.init(None)
 
-def create_gstreamer_pipe(pipe):
-    p_output, p_input = pipe
+def create_gstreamer_pipe(fdd):
+    # p_output, p_input = pipe
+
+    # print(p_output.fileno())
+    # print(p_input.fileno())
     
     # create the elements:
     source = Gst.ElementFactory.make("fdsrc", "file-source")
-    source.set_property("fd", p_output._handle)
+    source.set_property("fd", fdd)
 
     h264parse = Gst.ElementFactory.make("h264parse", "h264")
     avdec_h264 = Gst.ElementFactory.make("avdec_h264", "avdec_h264")
